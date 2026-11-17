@@ -12,7 +12,7 @@ import './App.css';
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter basename="/CSE108Lab08/">
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/StudentView" element={<StudentView />} />
