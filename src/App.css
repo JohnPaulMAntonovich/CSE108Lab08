@@ -1,0 +1,164 @@
+@import url("https://www.w3schools.com/w3css/6/w3.css");
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login-area {
+  position:relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* .login {
+  background-color: #fffffe;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 300px;
+  text-align: center;
+} */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(20, 20, 20, 1);
+}
+
+.dashboard-title {
+  margin: auto;
+}
+
+.courses-courses-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 70%;
+  height: 70%;
+  text-align: center;
+  z-index: 1;
+}
+
+.courses-wrapper {
+  background-color: white;
+}
+
+.inlinestuff {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+span p {
+  width: 35%;
+  border-style: 0px solid;
+}
+
+.student-title {
+  color: #fffffe;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-area .wave {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #4973ff;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+}
+.login-area .wave span {
+  content: "";
+  position: absolute;
+  width: 325vh;
+  height: 325vh;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -75%);
+  background: #000;
+}
+
+.login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  height: 50%;
+  text-align: center;
+  z-index: 1;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.text-input {
+  border-radius: 15px;
+  border-style: hidden;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #fffffe;
+}
+
+input[type="submit"] {
+  border-radius: 15px;
+  padding: 10px;
+  border-style: hidden;
+  background-color: #3da9fc;
+  color: #fffffe;
+  width: 80%;
+  text-align: center;
+  margin: 0;
+}
+
+.red-error {
+  margin-bottom: 20px;
+}
+
+div .wave span:nth-child(1) {
+  border-radius: 45%;
+  background: rgba(20, 20, 20, 1);
+  animation: animate 5s linear infinite;
+}
+
+div .wave span:nth-child(2) {
+  border-radius: 40%;
+  background: rgba(20, 20, 20, 0.5);
+  animation: animate 10s linear infinite;
+}
+div .wave span:nth-child(3) {
+  border-radius: 42.5%;
+  background: rgba(20, 20, 20, 0.5);
+  animation: animate 15s linear infinite;
+}
+@keyframes animate {
+  0% {
+    transform: translate(-50%, -75%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -75%) rotate(360deg);
+  }
+}

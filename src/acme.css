@@ -1,0 +1,377 @@
+/* ACME University theme for the teacher and student pages.
+   Colors and type match the login page (App.css): near-black background,
+   the login's two blues, white text, Poppins, rounded corners.
+   Import once in main.jsx, after App.jsx so these rules win over App.css.
+
+   Class guide
+   -----------
+   Page shell (student + teacher):
+     <div class="app-frame">
+       <header class="app-header"> welcome / title / sign out </header>
+       <main class="panel">
+         <div class="panel-bar"> title (teacher) </div>   or   <div class="tabs"> (student)
+         <div class="panel-body"> table </div>
+       </main>
+     </div>
+
+   Tabs:              <div class="tabs"><button class="tab active">..</button><button class="tab">..</button></div>
+   Tables:            <table class="acme-table">
+   Add / drop:        <button class="icon-button add">+</button>  <button class="icon-button drop">-</button>
+   Messages:          <p class="message">, <p class="message error">, <p class="message success">
+*/
+
+:root {
+  --bg: #141414;            /* login page background */
+  --surface: #1c1c20;       /* outer frame */
+  --panel: #222228;         /* main card */
+  --row-odd: #26262d;
+  --row-even: #1f1f25;
+  --border: #33333c;
+  --accent: #4973ff;        /* login wave blue */
+  --accent-light: #3da9fc;  /* login submit button blue */
+  --text: #f2f2f4;
+  --muted: #9a9cab;
+  --danger: #ff5c6c;
+  --success: #4ade80;
+  --radius: 15px;           /* same rounding as the login inputs */
+}
+
+/* App.css sets width: 100vw, which causes a sideways scrollbar */
+html,
+body {
+  width: auto;
+}
+
+html {
+  min-height: 100%;
+  background-color: var(--bg);
+  /* soft blue glow along the bottom, echoing the login wave */
+  background-image: radial-gradient(ellipse 90% 45% at 50% 115%, rgba(73, 115, 255, 0.28), transparent 70%);
+  background-attachment: fixed;
+}
+
+body {
+  margin: 0;
+  background: transparent;
+  font-family: Poppins, "Segoe UI", system-ui, sans-serif;
+  color: var(--text);
+}
+
+/* ---------- page shell ---------- */
+
+.app-frame {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 20px 40px 36px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  box-sizing: border-box;
+}
+
+.app-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.app-welcome {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.app-title {
+  margin: 0;
+  font-size: 1.9rem;
+  font-weight: 600;
+  letter-spacing: 2px; /* same spacing as the login form */
+  text-align: center;
+  color: var(--text);
+}
+
+.app-signout {
+  justify-self: end;
+  font-size: 1rem;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--accent-light);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link-button:hover {
+  text-decoration: underline;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  min-height: 380px;
+  overflow: hidden; /* keeps tabs inside the rounded corners */
+}
+
+.panel-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  border-bottom: 1px solid var(--border);
+}
+
+.panel-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.back-button {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--row-odd);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: 4px 12px 6px;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.panel-body {
+  padding: 36px 24px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ---------- tabs (student page) ---------- */
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+}
+
+.tab {
+  flex: 1;
+  height: 56px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+}
+
+.tab:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tab.active {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+  background: rgba(73, 115, 255, 0.12);
+  cursor: default;
+}
+
+/* ---------- tables ---------- */
+
+.acme-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 70%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.acme-table th {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  text-align: left;
+  padding: 12px 14px;
+}
+
+.acme-table td {
+  padding: 12px 14px;
+  border-top: 1px solid var(--border);
+}
+
+.acme-table tbody tr:nth-child(odd) {
+  background: var(--row-odd);
+}
+
+.acme-table tbody tr:nth-child(even) {
+  background: var(--row-even);
+}
+
+.acme-table tbody tr:hover {
+  background: #2c2c35;
+}
+
+.course-subtitle {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.roster-table {
+  min-width: 55%;
+}
+
+.roster-table th:last-child,
+.roster-table td:last-child {
+  width: 30%;
+}
+
+/* editable grade: looks like table text until focused */
+.grade-input {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  padding: 3px 6px;
+  margin: -4px -7px;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.grade-input::placeholder {
+  color: var(--muted);
+}
+
+.grade-input::-webkit-outer-spin-button,
+.grade-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.grade-input:hover {
+  border-color: var(--border);
+  cursor: text;
+}
+
+.grade-input:focus {
+  outline: none;
+  border-color: var(--accent-light);
+  background: var(--bg);
+}
+
+.grade-input.saving {
+  opacity: 0.5;
+}
+
+.grade-input.saved {
+  color: var(--success);
+}
+
+.grade-input.invalid {
+  border-color: var(--danger);
+  background: var(--bg);
+}
+
+/* ---------- add / drop (student page) ---------- */
+
+.action-cell {
+  text-align: center;
+}
+
+.icon-button {
+  width: 40px;
+  height: 28px;
+  border: none;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+}
+
+.icon-button.add {
+  background: var(--accent-light);
+}
+
+.icon-button.add:hover {
+  background: var(--accent);
+}
+
+.icon-button.drop {
+  background: var(--danger);
+}
+
+.icon-button.drop:hover {
+  background: #e0404f;
+}
+
+.icon-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* ---------- messages ---------- */
+
+.message {
+  margin: 0 0 16px;
+  padding: 10px 16px;
+  background: var(--row-even);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent-light);
+  border-radius: 10px;
+  color: var(--text);
+}
+
+.message.error {
+  border-left-color: var(--danger);
+  color: #ffb3bb;
+}
+
+.message.success {
+  margin: 16px 0 0;
+  border-left-color: var(--success);
+  color: #b8f5cf;
+}
+
+.hint {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 720px) {
+  .app-frame {
+    margin: 0;
+    padding: 12px;
+    border-radius: 0;
+  }
+  .app-title {
+    font-size: 1.3rem;
+  }
+  .acme-table,
+  .roster-table {
+    min-width: 100%;
+  }
+}
